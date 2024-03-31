@@ -1,0 +1,4 @@
+loguru
+memory-profiler
+torch
+torchvision
