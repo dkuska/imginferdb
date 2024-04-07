@@ -1,0 +1,9 @@
+black
+flake8
+isort
+loguru
+pre-commit
+pyproject-flake8
+pytest
+torch
+torchvision
