@@ -5,7 +5,7 @@ from torchvision import models, transforms
 class EfficientNetEmbeddings:
     def __init__(self, version="b0", pretrained=True):
         # Load the pre-trained EfficientNet model
-        model_name = f"efficientnet_b{version}"
+        model_name = f"efficientnet_{version}"
 
         self.model = getattr(models, model_name)(pretrained=pretrained)
 
