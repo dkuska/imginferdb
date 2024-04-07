@@ -1,11 +1,15 @@
 import torch
 from torchvision import models, transforms
 
+from .embedding_model import BaseEmbeddingModel
 
-class MobileNetEmbeddings:
+
+class MobileNetEmbeddings(BaseEmbeddingModel):
     def __init__(self, pretrained=True):
         # Load the pre-trained MobileNet model
-        self.model = models.mobilenet_v2(pretrained=pretrained)
+        self.model = models.mobilenet_v2(
+            weights=models.MobileNet_V2_Weights.DEFAULT,
+        )
 
         # Replace the classifier with an identity layer to get embeddings
         self.model.classifier = torch.nn.Identity()

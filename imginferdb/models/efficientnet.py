@@ -1,13 +1,15 @@
 import torch
 from torchvision import models, transforms
 
+from .embedding_model import BaseEmbeddingModel
 
-class EfficientNetEmbeddings:
+
+class EfficientNetEmbeddings(BaseEmbeddingModel):
     def __init__(self, version="b0", pretrained=True):
         # Load the pre-trained EfficientNet model
         model_name = f"efficientnet_{version}"
 
-        self.model = getattr(models, model_name)(pretrained=pretrained)
+        self.model = getattr(models, model_name)(weights=models.EfficientNet_B0_Weights.DEFAULT)
 
         # Replace the classifier with an identity layer to get embeddings
         self.model.classifier = torch.nn.Identity()

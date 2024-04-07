@@ -1,2 +1,9 @@
-class AutoEncoder:
-    pass
+from .embedding_model import BaseEmbeddingModel
+
+
+class AutoEncoderEmbeddings(BaseEmbeddingModel):
+    def __init__(self) -> None:
+        super().__init__()
+
+    def generate_embeddings(self):
+        pass

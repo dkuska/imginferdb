@@ -1,5 +1,5 @@
-from .autoencoder import AutoEncoder
-from .byol import BYOL
+from .autoencoder import AutoEncoderEmbeddings
+from .byol import BYOLEmbeddings
 from .efficientnet import EfficientNetEmbeddings
 from .mobilenet import MobileNetEmbeddings
 
@@ -10,9 +10,9 @@ def get_embedding_model(embedding_model_name: str):
     elif embedding_model_name == "MobileNet":
         embedding_model = MobileNetEmbeddings()
     elif embedding_model_name == "AutoEncoder":
-        embedding_model = AutoEncoder()
+        embedding_model = AutoEncoderEmbeddings()
     elif embedding_model_name == "BYOL":
-        embedding_model = BYOL()
+        embedding_model = BYOLEmbeddings()
     else:
         raise NotImplementedError(f"No Embedding Model Type: {embedding_model_name} defined")
 

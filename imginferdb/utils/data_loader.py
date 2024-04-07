@@ -4,7 +4,7 @@ from torch.utils.data import DataLoader
 
 def get_dataloader(
     dataset_name: str,
-    data_folder="../data",
+    data_folder="data",
     batch_size=4,
     shuffle=True,
     num_workers=4

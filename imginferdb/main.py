@@ -16,8 +16,8 @@ def perform_downstream_task(embeddings, task_model):
 
 def main():
     # Load configurations
-    embedding_config = load_config("./config/embeddings.yaml")
-    dataset_config = load_config("./config/datasets.yaml")
+    embedding_config = load_config("imginferdb/config/embeddings.yaml")
+    dataset_config = load_config("imginferdb/config/datasets.yaml")
     logger.info("Loaded Configurations")
 
     logger.info("Starting Experiments")
@@ -30,11 +30,11 @@ def main():
         # Iterate over embedding models
         for embedding_model_name in embedding_config["embedding_models"]:
             logger.info(
-                f"Embedding Model: {embedding_model_name}"
+                f"Embedding: {embedding_model_name}"
             )
             # Load Embedding Model
             embedding_model = get_embedding_model(embedding_model_name)
-            logger.info(f"Successfully loaded Embedding Model")
+            logger.info("Successfully loaded Embedding Model")
 
             logger.info("Generating Embeddings")
             # Generate Embeddings

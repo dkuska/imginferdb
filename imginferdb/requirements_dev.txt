@@ -1,4 +1,5 @@
 black
+byol-pytorch
 flake8
 isort
 loguru
