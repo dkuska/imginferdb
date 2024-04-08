@@ -10,26 +10,44 @@ def get_dataloader(
     num_workers=4
 ) -> DataLoader:
     if dataset_name == "MNIST":
-        dataset = torchvision.datasets.MNIST(
-            root=data_folder,
-            download=True
+        train_dataset = torchvision.datasets.MNIST(
+            root=data_folder, train=True, download=True
         )
+
+        test_dataset = torchvision.datasets.MNIST(
+            root=data_folder, train=False, download=True
+        )
+
     elif dataset_name == "CIFAR10":
-        dataset = torchvision.datasets.CIFAR10(
-            root=data_folder, download=True
+        train_dataset = torchvision.datasets.CIFAR10(
+            root=data_folder, train=True, download=True
+        )
+        test_dataset = torchvision.datasets.CIFAR10(
+            root=data_folder, train=False, download=True
         )
     elif dataset_name == "FashionMNIST":
-        dataset = torchvision.datasets.FashionMNIST(
-            root=data_folder, download=True
+        train_dataset = torchvision.datasets.FashionMNIST(
+            root=data_folder, train=True, download=True
+        )
+
+        test_dataset = torchvision.datasets.FashionMNIST(
+            root=data_folder, train=False, download=True
         )
     else:
         raise NotImplementedError(f"Dataset {dataset_name} not supported")
 
-    dataloader = DataLoader(
-        dataset,
+    train_dataloader = DataLoader(
+        train_dataset,
         batch_size=batch_size,
         shuffle=shuffle,
         num_workers=num_workers,
     )
 
-    return dataloader
+    test_dataloader = DataLoader(
+        test_dataset,
+        batch_size=batch_size,
+        shuffle=shuffle,
+        num_workers=num_workers,
+    )
+
+    return train_dataloader, test_dataloader

@@ -25,7 +25,7 @@ def main():
     for dataset_name in dataset_config["datasets"]:
         logger.info(f"Dataset: {dataset_name}")
         # Load Dataset and get DataLoader
-        dataloader = get_dataloader(dataset_name)
+        train_dataloader, test_dataloader = get_dataloader(dataset_name)
 
         # Iterate over embedding models
         for embedding_model_name in embedding_config["embedding_models"]:
@@ -38,7 +38,7 @@ def main():
 
             logger.info("Generating Embeddings")
             # Generate Embeddings
-            embeddings = generate_embeddings(dataloader, embedding_model)
+            embeddings = generate_embeddings(train_dataloader, embedding_model)
             logger.info("Successfully generated Embeddings")
 
             # Perform Downstream Task
