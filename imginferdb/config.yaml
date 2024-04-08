@@ -8,9 +8,9 @@ datasets:
       img_height: 28
       num_channels: 1
     CIFAR10:
-      img_width: 28
-      img_height: 28
-      num_channels: 1
+      img_width: 32
+      img_height: 32
+      num_channels: 3
 
 embedding_models:
   AutoEncoder:
