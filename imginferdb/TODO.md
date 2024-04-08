@@ -1,0 +1,26 @@
+# TODOs
+
+- Configuration
+  - Add Dataset and Model specific Configs
+- Datasets
+  - Integrate Train, Test & Validation Datasets
+  - Find more datasets, especially for Video Processing Tasks
+- Embedding Models
+  - Implement BaseEncoder
+    - Build Embedding on Test Set
+    - Compute Embedding on Train Set
+    - Use Pretrained Weights
+  - Implement AutoEncoder
+  - Implement BYOL
+  - Implement EfficientNet
+  - Implement MobileNet
+  - Implement Baseline
+    - Find State of the Art implementations for each dataset
+- Downstream Tasks
+- InferDB Integration
+- Profiling/Timing
+- Benchmarking Scripts
+  - Setup Scripts
+- Packaging
+  - Build Wheel
+  - GitHub Actions?!?

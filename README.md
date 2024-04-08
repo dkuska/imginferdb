@@ -2,7 +2,7 @@
 
 ## Introduction
 
-- This is a university project extending InferDB to image data
+- This is a university project extending InferDB ([Link to Repo](https://github.com/hpides/inferdb); [Link to Paper](https://hpi.de/fileadmin/user_upload/fachgebiete/rabl/publications/2024/inferdb_vldb24.pdf)) to image data
 
 ## How to use
 
