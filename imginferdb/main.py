@@ -1,7 +1,6 @@
-from config import load_config
 from loguru import logger
 from models import get_embedding_model
-from utils import get_dataloader
+from utils import get_dataloader, load_config
 
 
 def generate_embeddings(dataloader, model):
@@ -16,19 +15,19 @@ def perform_downstream_task(embeddings, task_model):
 
 def main():
     # Load configurations
-    embedding_config = load_config("imginferdb/config/embeddings.yaml")
-    dataset_config = load_config("imginferdb/config/datasets.yaml")
+    config = load_config("imginferdb/config.yaml")
+
     logger.info("Loaded Configurations")
 
     logger.info("Starting Experiments")
     # Iterate over datasets
-    for dataset_name in dataset_config["datasets"]:
+    for dataset_name in config["datasets"]:
         logger.info(f"Dataset: {dataset_name}")
         # Load Dataset and get DataLoader
         train_dataloader, test_dataloader = get_dataloader(dataset_name)
 
         # Iterate over embedding models
-        for embedding_model_name in embedding_config["embedding_models"]:
+        for embedding_model_name in config["embedding_models"]:
             logger.info(
                 f"Embedding: {embedding_model_name}"
             )

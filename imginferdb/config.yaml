@@ -1,3 +1,7 @@
+datasets:
+  - MNIST
+  - FashionMNIST
+  - CIFAR10
 embedding_models:
   - AutoEncoder
   - BYOL

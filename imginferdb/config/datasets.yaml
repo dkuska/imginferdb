@@ -1,4 +1,0 @@
-datasets:
-  - MNIST
-  - FashionMNIST
-  - CIFAR10
