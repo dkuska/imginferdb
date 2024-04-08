@@ -1,9 +1,23 @@
 datasets:
-  - MNIST
-  - FashionMNIST
-  - CIFAR10
+    MNIST:
+      img_width: 28
+      img_height: 28
+      num_channels: 1
+    FashionMNIST:
+      img_width: 28
+      img_height: 28
+      num_channels: 1
+    CIFAR10:
+      img_width: 28
+      img_height: 28
+      num_channels: 1
+
 embedding_models:
-  - AutoEncoder
-  - BYOL
-  - EfficientNet
-  - MobileNet
+  AutoEncoder:
+    pretrained: true
+  BYOL:
+    pretrained: true
+  EfficientNet:
+    pretrained: true
+  MobileNet:
+    pretrained: true

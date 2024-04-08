@@ -21,13 +21,13 @@ def main():
 
     logger.info("Starting Experiments")
     # Iterate over datasets
-    for dataset_name in config["datasets"]:
+    for dataset_name, dataset_config in config["datasets"].items():
         logger.info(f"Dataset: {dataset_name}")
         # Load Dataset and get DataLoader
         train_dataloader, test_dataloader = get_dataloader(dataset_name)
 
         # Iterate over embedding models
-        for embedding_model_name in config["embedding_models"]:
+        for embedding_model_name, embedding_model_config in config["embedding_models"].items():
             logger.info(
                 f"Embedding: {embedding_model_name}"
             )
