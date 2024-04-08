@@ -13,5 +13,8 @@ class BYOLEmbeddings(BaseEmbeddingModel):
             self.resnet, image_size=self.image_size, hidden_layer="avgpool"
         )
 
-    def generate_embeddings(self):
+    def generate_embeddings(self, test_dataloader):
+        pass
+
+    def build_embeddings(self, train_dataloader):
         pass

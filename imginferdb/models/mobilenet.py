@@ -26,7 +26,7 @@ class MobileNetEmbeddings(BaseEmbeddingModel):
             ]
         )
 
-    def generate_embeddings(self, image):
+    def generate_embeddings(self, test_dataloader):
         # Apply preprocessing
         image = self.preprocess(image)
 
@@ -39,3 +39,6 @@ class MobileNetEmbeddings(BaseEmbeddingModel):
             embeddings = self.model(image)
 
         return embeddings
+
+    def build_embeddings(self, train_dataloader):
+        pass
