@@ -1,7 +1,8 @@
+from copy import deepcopy
+
 import pandas as pd
 from optbinning import OptimalBinning
 from sklearn.base import BaseEstimator, TransformerMixin
-from copy import deepcopy
 
 
 class Hits_Featurizer(BaseEstimator, TransformerMixin):
@@ -10,10 +11,10 @@ class Hits_Featurizer(BaseEstimator, TransformerMixin):
         super().__init__()
 
         self.cat_mask_names = cat_mask_names
-    
+
     def learn_encoding(self, X, y, feature_name):
 
-        encoder = OptimalBinning(name=feature_name, dtype='categorical')
+        encoder = OptimalBinning(name=feature_name, dtype="categorical")
 
         encoder.fit(X[feature_name].to_numpy(), y)
 
@@ -22,7 +23,7 @@ class Hits_Featurizer(BaseEstimator, TransformerMixin):
     def get_feature_names(self):
 
         return self.feature_names
-    
+
     def fit(self, X, y):
 
         X_ = deepcopy(X)
@@ -32,9 +33,9 @@ class Hits_Featurizer(BaseEstimator, TransformerMixin):
         for c in self.cat_mask_names:
 
             self.encoder_dict[c] = self.learn_encoding(X_, y, c)
-        
+
         return self
-    
+
     def transform(self, X):
 
         X_ = deepcopy(X)
@@ -43,8 +44,10 @@ class Hits_Featurizer(BaseEstimator, TransformerMixin):
 
         if self.cat_mask_names:
             for c in self.cat_mask_names:
-                X_[c + '_encoded'] = self.encoder_dict[c].transform(X_[c].to_numpy(), metric='indices')
-        
+                X_[c + "_encoded"] = self.encoder_dict[c].transform(
+                    X_[c].to_numpy(), metric="indices"
+                )
+
         self.feature_names = list(X_)
-        
+
         return X_

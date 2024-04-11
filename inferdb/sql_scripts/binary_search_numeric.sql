@@ -13,7 +13,7 @@ BEGIN
 	idx :=  (searched_value <= arr[1])::int * idx
 				-- right extreme
 				+ (searched_value > arr[len])::int * len;
-			
+
 	not_found := (1-(	-- left extreme termination condition
 							(searched_value <= arr[1])::int
 							-- right extreme termination condition
@@ -21,13 +21,13 @@ BEGIN
 						)
 					 )::bool;
 
-	WHILE not_found LOOP		
-				
+	WHILE not_found LOOP
+
 		idx :=  -- left side
 				(searched_value > arr[m_-1] and searched_value <= arr[m_] and arr[m_-1] is not null)::int * (m_-1)
 				-- right side
 				+ (searched_value <= arr[m_+1] and searched_value > arr[m_] and arr[m_+1] is not null)::int * (m_);
-			
+
 		not_found := (1-(
 							-- left side termination condition
 							+ (searched_value > arr[m_-1] and searched_value <= arr[m_] and arr[m_-1] is not null)::int

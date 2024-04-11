@@ -1,8 +1,8 @@
 SELECT pgml.train(
-    project_name => 'preprocessed_adult_model'::text, 
-    task => 'classification'::text, 
+    project_name => 'preprocessed_adult_model'::text,
+    task => 'classification'::text,
     relation_name => 'pgml.adult_train'::text,
-    y_column_name => 'class'::text, 
+    y_column_name => 'class'::text,
     preprocess => '{
 		"row_id": {"impute": "mean", "scale": "standard"},
         "age": {"impute": "mean", "scale": "standard"},
@@ -35,8 +35,8 @@ select * from pgml.breast_cancer
 
 
 SELECT pgml.train(
-    project_name => 'credit_card'::text, 
-    task => 'classification'::text, 
+    project_name => 'credit_card'::text,
+    task => 'classification'::text,
     relation_name => 'pgml.creditcard_train'::text,
     y_column_name => 'class'::text,
 	test_size => 0.01
@@ -61,4 +61,3 @@ select * FROM pgml.digits
 select pgml.predict('preprocessed_adult_model',(0::integer, 56::bigint,0.1::real,33115.0::bigint,0.1::real,9::bigint,0.1::real,0.1::real,0.1::real,0.1::real,0.1::real,0.0::float8,0.0::float8,40::float8,0.1::real))
 
 select d.* as prep_tuples from pgml.creditcard_logisticregression_encode_scale_set(150000) d
-

@@ -12,7 +12,7 @@ with featurized_data as
 	, COALESCE(rq.count, 0) as route_freq
 	, s.distance * COALESCE(rq.count, 0) as freq_dist
 	, CASE  WHEN s.pickup_cluster IN (4, 3, 16, 14, 13, 9) AND s.dropoff_cluster IN (13, 8) THEN 0 WHEN s.pickup_cluster IN (21, 24, 10, 19, 12, 18) AND s.dropoff_cluster IN (13, 8) THEN 1 WHEN s.pickup_cluster IN (8, 7, 2) AND s.dropoff_cluster IN (13, 8) THEN 2 WHEN s.pickup_cluster IN (11, 5, 6, 1, 17, 15, 22) AND s.dropoff_cluster IN (13, 8) THEN 3 WHEN s.pickup_cluster IN (0, 23, 20) AND s.dropoff_cluster IN (13, 8) THEN 4 WHEN s.pickup_cluster IN (4, 3, 16, 14, 13, 9) AND s.dropoff_cluster IN (18, 12) THEN 5 WHEN s.pickup_cluster IN (21, 24, 10, 19, 12, 18) AND s.dropoff_cluster IN (18, 12) THEN 6 WHEN s.pickup_cluster IN (8, 7, 2) AND s.dropoff_cluster IN (18, 12) THEN 7 WHEN s.pickup_cluster IN (11, 5, 6, 1, 17, 15, 22) AND s.dropoff_cluster IN (18, 12) THEN 8 WHEN s.pickup_cluster IN (0, 23, 20) AND s.dropoff_cluster IN (18, 12) THEN 9 WHEN s.pickup_cluster IN (4, 3, 16, 14, 13, 9) AND s.dropoff_cluster IN (7, 2, 14) THEN 10 WHEN s.pickup_cluster IN (21, 24, 10, 19, 12, 18) AND s.dropoff_cluster IN (7, 2, 14) THEN 11 WHEN s.pickup_cluster IN (8, 7, 2) AND s.dropoff_cluster IN (7, 2, 14) THEN 12 WHEN s.pickup_cluster IN (11, 5, 6, 1, 17, 15, 22) AND s.dropoff_cluster IN (7, 2, 14) THEN 13 WHEN s.pickup_cluster IN (0, 23, 20) AND s.dropoff_cluster IN (7, 2, 14) THEN 14 WHEN s.pickup_cluster IN (4, 3, 16, 14, 13, 9) AND s.dropoff_cluster IN (17, 6, 1, 19, 16, 11) THEN 15 WHEN s.pickup_cluster IN (21, 24, 10, 19, 12, 18) AND s.dropoff_cluster IN (17, 6, 1, 19, 16, 11) THEN 16 WHEN s.pickup_cluster IN (8, 7, 2) AND s.dropoff_cluster IN (17, 6, 1, 19, 16, 11) THEN 17 WHEN s.pickup_cluster IN (11, 5, 6, 1, 17, 15, 22) AND s.dropoff_cluster IN (17, 6, 1, 19, 16, 11) THEN 18 WHEN s.pickup_cluster IN (0, 23, 20) AND s.dropoff_cluster IN (17, 6, 1, 19, 16, 11) THEN 19 WHEN s.pickup_cluster IN (4, 3, 16, 14, 13, 9) AND s.dropoff_cluster IN (23, 3, 5, 22, 9, 15, 10, 24, 4, 21, 0, 20) THEN 20 WHEN s.pickup_cluster IN (21, 24, 10, 19, 12, 18) AND s.dropoff_cluster IN (23, 3, 5, 22, 9, 15, 10, 24, 4, 21, 0, 20) THEN 21 WHEN s.pickup_cluster IN (8, 7, 2) AND s.dropoff_cluster IN (23, 3, 5, 22, 9, 15, 10, 24, 4, 21, 0, 20) THEN 22 WHEN s.pickup_cluster IN (11, 5, 6, 1, 17, 15, 22) AND s.dropoff_cluster IN (23, 3, 5, 22, 9, 15, 10, 24, 4, 21, 0, 20) THEN 23 WHEN s.pickup_cluster IN (0, 23, 20) AND s.dropoff_cluster IN (23, 3, 5, 22, 9, 15, 10, 24, 4, 21, 0, 20) THEN 24 END  as clusters_cluster
-	FROM 
+	FROM
 	(
 		SELECT
 		row_id
@@ -43,31 +43,31 @@ with featurized_data as
 
 encode_scaled as
 (
-	
-	SELECT row_id,ARRAY[((passenger_count-(1.6628402817959693))/1.3122565670353086)::real, ((distance-(3.4471878326333023))/4.314937461985763)::real, 
-				 ((hour-(13.60859126695753))/6.401555533353099)::real, ((route_freq-(356.7411458861792))/417.43107981115435)::real, 
-				 ((freq_dist-(650.1091490302825))/820.8054068657466)::real,  
-				 (CASE WHEN day='Friday' THEN 1 ELSE 0 END)::real,  (CASE WHEN day='Monday' THEN 1 ELSE 0 END)::Real,  
-				 CASE WHEN day='Saturday' THEN 1 ELSE 0 END,  CASE WHEN day='Sunday' THEN 1 ELSE 0 END,  
-				 CASE WHEN day='Thursday' THEN 1 ELSE 0 END,  CASE WHEN day='Tuesday' THEN 1 ELSE 0 END,  
-				 CASE WHEN day='Wednesday' THEN 1 ELSE 0 END,  CASE WHEN is_weekend='0' THEN 1 ELSE 0 END,  
-				 CASE WHEN is_weekend='1' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='0' THEN 1 ELSE 0 END,  
-				 CASE WHEN clusters_cluster='1' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='2' THEN 1 ELSE 0 END,  
-				 CASE WHEN clusters_cluster='3' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='4' THEN 1 ELSE 0 END,  
-				 CASE WHEN clusters_cluster='5' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='6' THEN 1 ELSE 0 END,  
-				 CASE WHEN clusters_cluster='7' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='8' THEN 1 ELSE 0 END,  
-				 CASE WHEN clusters_cluster='9' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='10' THEN 1 ELSE 0 END,  
-				 CASE WHEN clusters_cluster='11' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='12' THEN 1 ELSE 0 END,  
-				 CASE WHEN clusters_cluster='13' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='14' THEN 1 ELSE 0 END,  
-				 CASE WHEN clusters_cluster='15' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='16' THEN 1 ELSE 0 END,  
-				 CASE WHEN clusters_cluster='17' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='18' THEN 1 ELSE 0 END,  
-				 CASE WHEN clusters_cluster='19' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='20' THEN 1 ELSE 0 END,  
-				 CASE WHEN clusters_cluster='21' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='22' THEN 1 ELSE 0 END,  
-				 CASE WHEN clusters_cluster='23' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='24' THEN 1 ELSE 0 END,  
-				 CASE WHEN month='1' THEN 1 ELSE 0 END,  CASE WHEN month='2' THEN 1 ELSE 0 END,  CASE WHEN month='3' THEN 1 ELSE 0 END,  
-				 CASE WHEN month='4' THEN 1 ELSE 0 END,  CASE WHEN month='5' THEN 1 ELSE 0 END,  CASE WHEN month='6' THEN 1 ELSE 0 END,  
-				 CASE WHEN pickup_hour_of_day='afternoon' THEN 1 ELSE 0 END,  CASE WHEN pickup_hour_of_day='evening' THEN 1 ELSE 0 END,  
-				 CASE WHEN pickup_hour_of_day='late_night' THEN 1 ELSE 0 END,  CASE WHEN pickup_hour_of_day='morning' THEN 1 ELSE 0 END] as m 
+
+	SELECT row_id,ARRAY[((passenger_count-(1.6628402817959693))/1.3122565670353086)::real, ((distance-(3.4471878326333023))/4.314937461985763)::real,
+				 ((hour-(13.60859126695753))/6.401555533353099)::real, ((route_freq-(356.7411458861792))/417.43107981115435)::real,
+				 ((freq_dist-(650.1091490302825))/820.8054068657466)::real,
+				 (CASE WHEN day='Friday' THEN 1 ELSE 0 END)::real,  (CASE WHEN day='Monday' THEN 1 ELSE 0 END)::Real,
+				 CASE WHEN day='Saturday' THEN 1 ELSE 0 END,  CASE WHEN day='Sunday' THEN 1 ELSE 0 END,
+				 CASE WHEN day='Thursday' THEN 1 ELSE 0 END,  CASE WHEN day='Tuesday' THEN 1 ELSE 0 END,
+				 CASE WHEN day='Wednesday' THEN 1 ELSE 0 END,  CASE WHEN is_weekend='0' THEN 1 ELSE 0 END,
+				 CASE WHEN is_weekend='1' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='0' THEN 1 ELSE 0 END,
+				 CASE WHEN clusters_cluster='1' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='2' THEN 1 ELSE 0 END,
+				 CASE WHEN clusters_cluster='3' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='4' THEN 1 ELSE 0 END,
+				 CASE WHEN clusters_cluster='5' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='6' THEN 1 ELSE 0 END,
+				 CASE WHEN clusters_cluster='7' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='8' THEN 1 ELSE 0 END,
+				 CASE WHEN clusters_cluster='9' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='10' THEN 1 ELSE 0 END,
+				 CASE WHEN clusters_cluster='11' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='12' THEN 1 ELSE 0 END,
+				 CASE WHEN clusters_cluster='13' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='14' THEN 1 ELSE 0 END,
+				 CASE WHEN clusters_cluster='15' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='16' THEN 1 ELSE 0 END,
+				 CASE WHEN clusters_cluster='17' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='18' THEN 1 ELSE 0 END,
+				 CASE WHEN clusters_cluster='19' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='20' THEN 1 ELSE 0 END,
+				 CASE WHEN clusters_cluster='21' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='22' THEN 1 ELSE 0 END,
+				 CASE WHEN clusters_cluster='23' THEN 1 ELSE 0 END,  CASE WHEN clusters_cluster='24' THEN 1 ELSE 0 END,
+				 CASE WHEN month='1' THEN 1 ELSE 0 END,  CASE WHEN month='2' THEN 1 ELSE 0 END,  CASE WHEN month='3' THEN 1 ELSE 0 END,
+				 CASE WHEN month='4' THEN 1 ELSE 0 END,  CASE WHEN month='5' THEN 1 ELSE 0 END,  CASE WHEN month='6' THEN 1 ELSE 0 END,
+				 CASE WHEN pickup_hour_of_day='afternoon' THEN 1 ELSE 0 END,  CASE WHEN pickup_hour_of_day='evening' THEN 1 ELSE 0 END,
+				 CASE WHEN pickup_hour_of_day='late_night' THEN 1 ELSE 0 END,  CASE WHEN pickup_hour_of_day='morning' THEN 1 ELSE 0 END] as m
 	FROM featurized_data
 ),
 

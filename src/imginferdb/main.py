@@ -27,10 +27,10 @@ def main():
         train_dataloader, test_dataloader = get_dataloader(dataset_name)
 
         # Iterate over embedding models
-        for embedding_model_name, embedding_model_config in config["embedding_models"].items():
-            logger.info(
-                f"Embedding: {embedding_model_name}"
-            )
+        for embedding_model_name, embedding_model_config in config[
+            "embedding_models"
+        ].items():
+            logger.info(f"Embedding: {embedding_model_name}")
             # Load Embedding Model
             embedding_model = get_embedding_model(embedding_model_name)
             logger.info("Successfully loaded Embedding Model")
@@ -41,9 +41,7 @@ def main():
             logger.info("Successfully generated Embeddings")
 
             # Perform Downstream Task
-            task_results = perform_downstream_task(
-                embeddings, None
-            )
+            task_results = perform_downstream_task(embeddings, None)
 
 
 if __name__ == "__main__":

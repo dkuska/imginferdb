@@ -14,6 +14,8 @@ def get_embedding_model(embedding_model_name: str):
     elif embedding_model_name == "BYOL":
         embedding_model = BYOLEmbeddings()
     else:
-        raise NotImplementedError(f"No Embedding Model Type: {embedding_model_name} defined")
+        raise NotImplementedError(
+            f"No Embedding Model Type: {embedding_model_name} defined"
+        )
 
     return embedding_model

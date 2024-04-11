@@ -1,11 +1,12 @@
-from configparser import ConfigParser
 import os
+from configparser import ConfigParser
 
-def config(section='postgresql'):
-    
+
+def config(section="postgresql"):
+
     current = os.path.dirname(os.path.realpath(__file__))
-    path = os.path.join(current, 'database.ini')
-    
+    path = os.path.join(current, "database.ini")
+
     # create a parser
     parser = ConfigParser()
     # read config file
@@ -18,6 +19,6 @@ def config(section='postgresql'):
         for param in params:
             db[param[0]] = param[1]
     else:
-        raise Exception('Section {0} not found in the {1} file'.format(section, path))
+        raise Exception("Section {0} not found in the {1} file".format(section, path))
 
     return db

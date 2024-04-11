@@ -18,7 +18,7 @@ BEGIN
    _start_ts := clock_timestamp();
    PERFORM * FROM format('%s', func);  -- your query here, replacing the outer SELECT with PERFORM
    _end_ts   := clock_timestamp();
-   
+
 -- RAISE NOTICE 'Timing overhead in ms = %', _overhead;
    runtime := 1000 * (extract(epoch FROM _end_ts - _start_ts)) - _overhead;
 

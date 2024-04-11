@@ -1,10 +1,11 @@
+import sys
+
 from credit_card_new_pipeline import creditcard_experiment
 from hits import hits_experiment
 from mnist import mnist_experiment
 from nyc_rides_complex import nycrides_experiment
 from pm25 import pm_experiment
 from rice import rice_experiment
-import sys
 
 
 def standalone_experiments(iterations=5, paper_models=False):

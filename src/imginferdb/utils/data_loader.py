@@ -3,11 +3,7 @@ from torch.utils.data import DataLoader
 
 
 def get_dataloader(
-    dataset_name: str,
-    data_folder="data",
-    batch_size=4,
-    shuffle=True,
-    num_workers=4
+    dataset_name: str, data_folder="data", batch_size=4, shuffle=True, num_workers=4
 ) -> DataLoader:
     if dataset_name == "MNIST":
         train_dataset = torchvision.datasets.MNIST(

@@ -9,7 +9,9 @@ class EfficientNetEmbeddings(BaseEmbeddingModel):
         # Load the pre-trained EfficientNet model
         model_name = f"efficientnet_{version}"
 
-        self.model = getattr(models, model_name)(weights=models.EfficientNet_B0_Weights.DEFAULT)
+        self.model = getattr(models, model_name)(
+            weights=models.EfficientNet_B0_Weights.DEFAULT
+        )
 
         # Replace the classifier with an identity layer to get embeddings
         self.model.classifier = torch.nn.Identity()

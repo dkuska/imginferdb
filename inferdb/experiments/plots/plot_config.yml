@@ -20,7 +20,7 @@ InferDB:
   Impute/Featurize: '#bdd7e7'
   Translate: '#6baed6'
   Predict: '#3182bd'
-  
+
 batches:
   nyc_rides: [1,10000,100000,729000]
   creditcard: [1,10000,100000,140000]

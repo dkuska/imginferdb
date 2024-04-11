@@ -8,7 +8,7 @@ where nyc.key = kv.key
 
 with ins as (select * from nyc_rides_test nyc limit 1)
 ,
-ins_key as (select preprocess_nyc_rides_mlpregressor(nyc) as key, nyc.class as tv 
+ins_key as (select preprocess_nyc_rides_mlpregressor(nyc) as key, nyc.class as tv
 from ins nyc)
 
 select kk.*, kv.value
@@ -18,7 +18,7 @@ where kk.key = kv.key
 ----------- Batch Processing -----
 with ins as (select * from nyc_rides_test nyc)
 ,
-ins_key as (select preprocess_nyc_rides_mlpregressor(nyc) as key, nyc.class as tv 
+ins_key as (select preprocess_nyc_rides_mlpregressor(nyc) as key, nyc.class as tv
 from ins nyc)
 
 select kk.*, kv.value
@@ -36,7 +36,7 @@ where nyc.key = kv.key
 
 with ins as (select * from nyc_rides_test nyc limit 1)
 ,
-ins_key as (select preprocess_nyc_rides_linearregression(nyc) as key, nyc.class as tv 
+ins_key as (select preprocess_nyc_rides_linearregression(nyc) as key, nyc.class as tv
 from ins nyc)
 
 select kk.*, kv.value
@@ -46,7 +46,7 @@ where kk.key = kv.key
 ----------- Batch Processing -----
 with ins as (select * from nyc_rides_test nyc)
 ,
-ins_key as (select preprocess_nyc_rides_linearregression(nyc) as key, nyc.class as tv 
+ins_key as (select preprocess_nyc_rides_linearregression(nyc) as key, nyc.class as tv
 from ins nyc)
 
 select kk.*, kv.value
@@ -70,7 +70,7 @@ where ai.key = kv.key
 
 with ins as (select * from nyc_rides_test nyc limit 1)
 ,
-ins_key as (select preprocess_nyc_rides_mlpregressor(nyc) as key, nyc.class as tv 
+ins_key as (select preprocess_nyc_rides_mlpregressor(nyc) as key, nyc.class as tv
 from ins nyc)
 
 select kk.*, kv.value
@@ -80,11 +80,10 @@ where kk.key = kv.key
 ----------- Batch Processing -----
 with ins as (select * from nyc_rides_test nyc)
 ,
-ins_key as (select preprocess_nyc_rides_mlpregressor(nyc) as key, nyc.class as tv 
+ins_key as (select preprocess_nyc_rides_mlpregressor(nyc) as key, nyc.class as tv
 from ins nyc)
 
 select kk.*, kv.value
 from ins_key kk, nyc_rides_mlpregressor_kv kv
 where kk.key = kv.key
 ----------------------
-

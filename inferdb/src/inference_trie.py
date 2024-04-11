@@ -1,5 +1,6 @@
 from collections import Counter
 
+
 class TrieNode:
     """A node in the trie structure"""
 
@@ -78,7 +79,7 @@ class Trie(object):
 
         Returns:
             int, float: value for the key in the structure
-        """        
+        """
         node = self.root
 
         for k in x:
@@ -91,8 +92,8 @@ class Trie(object):
             else:
                 self.output = []
                 self.dfs(node)
-                if self.type == 'regression':
+                if self.type == "regression":
                     return sum(self.output) / len(self.output)
-                elif self.type in ('classification', 'multi-class'):
+                elif self.type in ("classification", "multi-class"):
                     counter = Counter(self.output)
                     return counter.most_common(1)[0][0]

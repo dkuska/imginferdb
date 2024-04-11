@@ -7,7 +7,7 @@ select row_number() over () as row_id, s.*  from adult_logisticregression_scale(
 numbered_data as (
 
 select row_number() over () as row_id, d.* from adult_test d
-	
+
 )
 
 select (count(*) - sum(abs(d.class - lr.prediction)))/count(*) as err
